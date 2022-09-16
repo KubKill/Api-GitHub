@@ -32,6 +32,8 @@ public class UsersRepositoriesProvider implements UsersRepositoriesService {
         List<CompletableFuture<RepositoryDTO>> asyncTasksList = new ArrayList<>();
 
         String repositoriesData = dataSource.getRepositories(userName);
+        if (repositoriesData == null) return null;
+
         JsonNode objectTree = DataConverter.convertToObjectTree(repositoriesData, mapper);
         repositories = createRepositories(objectTree);
 

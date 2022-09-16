@@ -1,5 +1,6 @@
 package com.atipera.api.git_data.controllers;
 
+import com.atipera.api.git_data.DTOs.BranchDTO;
 import com.atipera.api.git_data.services.interfaces.UsersRepositoriesService;
 import com.atipera.api.git_data.DTOs.RepositoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,12 @@ public class GitDataController {
     @Autowired
     private UsersRepositoriesService service;
 
-
-//    @RequestMapping("/{user}")
     @Validated
     @GetMapping(value = "/{user}", headers = "Accept=application/json")
     public ResponseEntity<List<RepositoryDTO>> read(@PathVariable String user) {
         List<RepositoryDTO> repos = service.get(user);
-        if (repos.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        if (repos == null) {
+            return ResponseEntity.status(404).build();
         } else {
             return ResponseEntity.ok(repos);
         }
