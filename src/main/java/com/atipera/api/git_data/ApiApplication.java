@@ -22,6 +22,7 @@ public class ApiApplication {
 		executor.setCorePoolSize(2);
 		executor.setMaxPoolSize(2);
 		executor.setQueueCapacity(500);
+		executor.setThreadNamePrefix("GitDataEndpoint-");
 		executor.initialize();
 		return executor;
 	}

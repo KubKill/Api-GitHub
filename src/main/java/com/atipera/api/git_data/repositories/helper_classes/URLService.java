@@ -20,9 +20,7 @@ public class URLService {
     public static String readURL(URL url, Charset encoding){
         try (InputStream in = url.openStream()) {
             return IOUtils.toString(in, encoding);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (Exception e) {}
         return null;
     }
 }
